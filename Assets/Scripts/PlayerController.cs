@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     //VALUES
     [SerializeField] private float speed;
     private int direction = 1;
-    private int IdSpeed;
+    private int idSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         m_transform = GetComponent<Transform>();
         m_rigidbody2D = GetComponent<Rigidbody2D>();
         m_animator = GetComponent<Animator>();
-        IdSpeed = Animator.StringToHash("Speed");
+        idSpeed = Animator.StringToHash("Speed");
     }
 
     private void Update()
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     private void SetAnimatorValues()
     {
-        m_animator.SetFloat(IdSpeed, Mathf.Abs(m_rigidbody2D.linearVelocityX));
+        m_animator.SetFloat("Speed", Mathf.Abs(m_rigidbody2D.linearVelocityX));
     }
 
     void FixedUpdate()
