@@ -5,9 +5,9 @@ public class GatherInput : MonoBehaviour
 {
     private Controls controls;
     
-    [SerializeField] private float _valueX;
-    public float ValueX { get => _valueX; }
-   
+    [SerializeField] private Vector2 _valueX;
+    public Vector2 ValueX { get => _valueX; }
+
     [SerializeField] private bool _isJumping;
     public bool IsJumping { get => _isJumping; set => _isJumping = value; }
 
@@ -27,12 +27,14 @@ public class GatherInput : MonoBehaviour
 
     private void StartMove(InputAction.CallbackContext context)
     {
-        _valueX = Mathf.RoundToInt(context.ReadValue<float>());
+        _valueX = context.ReadValue<Vector2>();
+        _valueX = new Vector2(Mathf.Round(_valueX.x), Mathf.Round(_valueX.y));
     }
 
     private void StopMove(InputAction.CallbackContext context)
     {
-        _valueX = 0;
+        _valueX = Vector2.zero;
+
     }
 
     private void StartJump (InputAction.CallbackContext context)

@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [Header("Wall settings")]
     [SerializeField] private float checkWallDistance;
     [SerializeField] private bool isWallDetected;
+    float slideSpeed = 0.5f;
 
     private void Awake()
     {
@@ -77,6 +78,22 @@ public class PlayerController : MonoBehaviour
     {
         HandleGround();
         HandleWall();
+        HandleSlide();
+    }
+
+    private void HandleSlide()
+    {
+        if (m_gatherInput.ValueX.y < 0)
+        {
+            slideSpeed = 1;
+        }
+        else { slideSpeed = 0.5f; }
+        if (isWallDetected && m_rigidbody2D.linearVelocity.y < 0)
+        {
+            Debug.Log("Slide");
+            canDoubleJump = false;
+            m_rigidbody2D.linearVelocity = new Vector2(m_rigidbody2D.linearVelocityX, m_rigidbody2D.linearVelocityY * slideSpeed);
+        }
     }
 
     private void HandleWall()
@@ -103,12 +120,12 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Flip();
-        m_rigidbody2D.linearVelocity = new Vector2(speed * m_gatherInput.ValueX, m_rigidbody2D.linearVelocityY);
+        m_rigidbody2D.linearVelocity = new Vector2(speed * m_gatherInput.ValueX.x, m_rigidbody2D.linearVelocity.y);
     }
 
     private void Flip()
     {
-        if(m_gatherInput.ValueX * direction < 0)
+        if(m_gatherInput.ValueX.x * direction < 0)
         {
             m_transform.localScale = new Vector3(-m_transform.localScale.x, 1, 1);
             direction *= -1;
@@ -121,12 +138,12 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
-                m_rigidbody2D.linearVelocity = new Vector2(speed * m_gatherInput.ValueX, jumpForce);
+                m_rigidbody2D.linearVelocity = new Vector2(speed * m_gatherInput.ValueX.x, jumpForce);
                 canDoubleJump = true;
             }
             else if (counterExtraJumps > 0 && canDoubleJump)
             {
-                m_rigidbody2D.linearVelocity = new Vector2(speed * m_gatherInput.ValueX, jumpForce);
+                m_rigidbody2D.linearVelocity = new Vector2(speed * m_gatherInput.ValueX.x, jumpForce);
                 counterExtraJumps-=1;
             }
         }
