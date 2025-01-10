@@ -2182,6 +2182,8 @@ MonoBehaviour:
     m_Bits: 128
   checkWallDistance: 0.27
   isWallDetected: 0
+  canWallSlide: 0
+  slideSpeed: 0
 --- !u!114 &857705622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2194,7 +2196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4630ea9b11db25646bed392efcac8a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _valueX: 0
+  _value: {x: 0, y: 0}
   _isJumping: 0
 --- !u!95 &857705623
 Animator:
