@@ -47,19 +47,18 @@ public class PlayerController : MonoBehaviour
 
     [Header("Knock settings")]
     [SerializeField] private bool isKnocked;
-    [SerializeField] private bool canBeKnocked;
+    //[SerializeField] private bool canBeKnocked;
     [SerializeField] private Vector2 knockedPower;
     [SerializeField] private float knockedDuration;
 
     private void Awake()
     {
         m_gatherInput = GetComponent<GatherInput>();
-        //m_transform = GetComponent<Transform>();
+        m_transform = GetComponent<Transform>();
         m_rigidbody2D = GetComponent<Rigidbody2D>();
         m_animator = GetComponent<Animator>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         idSpeed = Animator.StringToHash("speed");
@@ -91,7 +90,7 @@ public class PlayerController : MonoBehaviour
         Move();
         Jump();
     }
-
+ 
     private void CheckCollision()
     {
         HandleGround();
@@ -199,10 +198,10 @@ public class PlayerController : MonoBehaviour
     private IEnumerator KnockbackRoutine()
     {
         isKnocked = true;
-        canBeKnocked = false;
+        //canBeKnocked = false;
         yield return new WaitForSeconds(knockedDuration);
         isKnocked = false;
-        canBeKnocked = true;
+        //canBeKnocked = true;
     }
 
     private void OnDrawGizmos()
