@@ -1,57 +1,58 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class GatherInput : MonoBehaviour
 {
-    private Controls controls;
+    private Controls _controls;
     
-    [SerializeField] private Vector2 _value;
-    public Vector2 Value { get => _value; }
+    [SerializeField] private Vector2 value;
+    public Vector2 Value => value;
 
-    [SerializeField] private bool _isJumping;
-    public bool IsJumping { get => _isJumping; set => _isJumping = value; }
+    [SerializeField] private bool isJumping;
+    public bool IsJumping { get => isJumping; set => isJumping = value; }
 
     private void Awake()
     {
-        controls = new Controls();
+        _controls = new Controls();
     }
 
     private void OnEnable()
     {
-        controls.Player.Move.performed += StartMove;
-        controls.Player.Move.canceled += StopMove;
-        controls.Player.Jump.performed += StartJump;
-        controls.Player.Jump.canceled += StopJump;
-        controls.Player.Enable();
+        _controls.Player.Move.performed += StartMove;
+        _controls.Player.Move.canceled += StopMove;
+        _controls.Player.Jump.performed += StartJump;
+        _controls.Player.Jump.canceled += StopJump;
+        _controls.Player.Enable();
     }
 
     private void StartMove(InputAction.CallbackContext context)
     {
-        _value = context.ReadValue<Vector2>().normalized;
+        value = context.ReadValue<Vector2>().normalized;
     }
 
     private void StopMove(InputAction.CallbackContext context)
     {
-        _value = Vector2.zero;
+        value = Vector2.zero;
 
     }
 
     private void StartJump (InputAction.CallbackContext context)
     {
-        _isJumping = true;
+        isJumping = true;
     }
 
     private void StopJump(InputAction.CallbackContext context)
     {
-        _isJumping = false;
+        isJumping = false;
     }
 
     private void OnDisable()
     {
-        controls.Player.Move.performed -= StartMove;
-        controls.Player.Move.canceled -= StopMove;
-        controls.Player.Jump.performed -= StartJump;
-        controls.Player.Jump.canceled -= StopJump;
-        controls.Player.Disable();
+        _controls.Player.Move.performed -= StartMove;
+        _controls.Player.Move.canceled -= StopMove;
+        _controls.Player.Jump.performed -= StartJump;
+        _controls.Player.Jump.canceled -= StopJump;
+        _controls.Player.Disable();
     }
 }

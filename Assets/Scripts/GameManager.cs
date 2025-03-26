@@ -1,19 +1,24 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    [SerializeField] private PlayerController _playerController;
-    public PlayerController PlayerController { get => _playerController;}
+    public static GameManager Instance;
+    [SerializeField] private PlayerController playerController;
+    public PlayerController PlayerController => playerController;
 
-    [SerializeField] private int _diamondCollected;
-    public int DiamondCollected { get => _diamondCollected;}
+    [Header( "Diamond Manager" )]
+    [SerializeField] private int diamondCollected;
+    [SerializeField] private bool diamondHaveRandomLook;
+    public int DiamondCollected => diamondCollected;
 
     private void Awake()
     {
-        if (instance == null) instance = this;
+        if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
 
-    public void AddDiamond() => _diamondCollected ++;
+    public void AddDiamond() => diamondCollected ++;
+    public bool DiamondHaveRandomLook() => diamondHaveRandomLook;
 }
