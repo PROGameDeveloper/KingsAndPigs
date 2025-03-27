@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField] private PlayerController playerController;
     public PlayerController PlayerController => playerController;
+    
 
     [Header( "Diamond Manager" )]
     [SerializeField] private int diamondCollected;

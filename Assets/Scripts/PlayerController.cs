@@ -51,6 +51,9 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private bool canBeKnocked;
     [SerializeField] private Vector2 knockedPower;
     [SerializeField] private float knockedDuration;
+    
+    [Header("Death VFX")]
+    [SerializeField] private GameObject deathVFX;
 
     private void Awake()
     {
@@ -118,7 +121,6 @@ public class PlayerController : MonoBehaviour
     {
         isWallDetected = Physics2D.Raycast(mTransform.position, Vector2.right * _direction, checkWallDistance, groundLayer);
     }
-
     private void HandleWallSlide()
     {
         canWallSlide = isWallDetected;
@@ -127,7 +129,7 @@ public class PlayerController : MonoBehaviour
         slideSpeed = _mGatherInput.Value.y < 0 ? 1 : 0.5f;
         _mRigidbody2D.linearVelocity = new Vector2(_mRigidbody2D.linearVelocityX,_mRigidbody2D.linearVelocityY * slideSpeed);
     }
-
+    
     private void Move()
     {
 
@@ -202,6 +204,12 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(knockedDuration);
         isKnocked = false;
         //canBeKnocked = true;
+    }
+
+    public void Die()
+    {
+        GameObject deathVFXPrefab = Instantiate(deathVFX, mTransform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()
