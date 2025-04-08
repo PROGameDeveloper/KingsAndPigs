@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Move settings")]
     [SerializeField] private float speed;
+    [SerializeField] private bool canMove;
+    [SerializeField] private float moveDelay;
     private int _direction = 1;
 
     [Header("Jump settings")]
@@ -61,7 +63,10 @@ public class PlayerController : MonoBehaviour
         mTransform = GetComponent<Transform>();
         _mRigidbody2D = GetComponent<Rigidbody2D>();
         _mAnimator = GetComponent<Animator>();
+        canMove = false;
+        StartCoroutine(CanMoveRoutine());
     }
+
 
     private void Start()
     {
@@ -69,8 +74,6 @@ public class PlayerController : MonoBehaviour
         _idIsGrounded = Animator.StringToHash("isGrounded");
         _idIsWallDetected = Animator.StringToHash("isWallDetected");
         _idKnockback = Animator.StringToHash("knockback");
-        lFoot = GameObject.Find("LFoot").GetComponent<Transform>();
-        rFoot = GameObject.Find("RFoot").GetComponent<Transform>();
         counterExtraJumps = extraJumps;
     }
 
@@ -88,6 +91,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!canMove) return;
         if(isKnocked) return;
         CheckCollision();
         Move();
@@ -132,12 +136,17 @@ public class PlayerController : MonoBehaviour
     
     private void Move()
     {
-
+        if (!canMove) return;
         if (isWallDetected && !isGrounded) return;
         if (isWallJumping) return;
 
         Flip();
         _mRigidbody2D.linearVelocity = new Vector2(speed * _mGatherInput.Value.x, _mRigidbody2D.linearVelocity.y);
+    }
+    private IEnumerator CanMoveRoutine()
+    {
+        yield return new WaitForSeconds(moveDelay);
+        canMove = true;
     }
 
     private void Flip()
