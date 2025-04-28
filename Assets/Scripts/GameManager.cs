@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
@@ -13,9 +10,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform playerRespawnPoint;
     [SerializeField] private float respawnPlayerDelay;
     [SerializeField] private PlayerController playerController;
-    public PlayerController PlayerController => playerController;
-    
 
+    [Header("Respawn Settings")]
+    public bool hasCheckPointActive;
+    public Vector3 checkpointRespawnPosition;
+    
     [Header( "Diamond Manager" )]
     [SerializeField] private int diamondCollected;
     [SerializeField] private bool diamondHaveRandomLook;
@@ -28,8 +27,12 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void RespawnPlayer() => StartCoroutine(RespawnPlayerCoroutine());
-
+    public void RespawnPlayer()
+    {
+        if (hasCheckPointActive) playerRespawnPoint.position = checkpointRespawnPosition;
+        StartCoroutine(RespawnPlayerCoroutine());
+    }
+    
     IEnumerator RespawnPlayerCoroutine()
     {
         yield return new WaitForSeconds(respawnPlayerDelay); 

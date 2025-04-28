@@ -17,6 +17,8 @@ public class Checkpoint : MonoBehaviour
     {
         if(isActive) return;
         if (other.CompareTag("Player")) ActiveCheckpoint();
+        GameManager.Instance.hasCheckPointActive = true;
+        GameManager.Instance.checkpointRespawnPosition = transform.position;
     }
 
     private void ActiveCheckpoint()
