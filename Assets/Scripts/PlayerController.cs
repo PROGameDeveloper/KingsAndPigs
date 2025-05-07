@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
+
     [Header("Components")]
     [SerializeField] private Transform myTransform;
     private Rigidbody2D _rigidbody2D;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private readonly int _idIsWallDetected = Animator.StringToHash("isWallDetected");
     private readonly int _idKnockback = Animator.StringToHash("knockback");
     private readonly int _idIdle = Animator.StringToHash("Idle");
+    private readonly int _idDoorIn = Animator.StringToHash("doorIn");
 
     [Header("Move settings")]
     [SerializeField] private float speed;
@@ -57,7 +60,7 @@ public class PlayerController : MonoBehaviour
     
     [Header("Death VFX")]
     [SerializeField] private GameObject deathVFX;
-
+    
     private void Awake()
     {
         _gatherInput = GetComponent<GatherInput>();
@@ -65,7 +68,6 @@ public class PlayerController : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         CheckPlayerRespawnState();
-        
     }
     
     private void Start() => counterExtraJumps = extraJumps;
@@ -131,6 +133,7 @@ public class PlayerController : MonoBehaviour
     {
         isWallDetected = Physics2D.Raycast(myTransform.position, Vector2.right * _direction, checkWallDistance, groundLayer);
     }
+    
     private void HandleWallSlide()
     {
         canWallSlide = isWallDetected;
@@ -148,6 +151,7 @@ public class PlayerController : MonoBehaviour
         Flip();
         _rigidbody2D.linearVelocity = new Vector2(speed * _gatherInput.Value.x, _rigidbody2D.linearVelocity.y);
     }
+    
     private IEnumerator CanMoveRoutine()
     {
         yield return new WaitForSeconds(moveDelay);
@@ -223,8 +227,24 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void DoorIn()
+    {
+        _rigidbody2D.linearVelocity = Vector2.zero;
+        _animator.Play(_idIdle);
+        _animator.SetBool(_idDoorIn,true);
+        canMove = false;
+        StartCoroutine(DoorInRoutine());
+    }
+
+    private IEnumerator DoorInRoutine()
+    {
+        yield return new WaitForSeconds(moveDelay);
+        SceneManager.LoadScene(0);
+    }
+    
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(myTransform.position,new Vector2(myTransform.position.x + (checkWallDistance * _direction),myTransform.position.y));
     }
+
 }
