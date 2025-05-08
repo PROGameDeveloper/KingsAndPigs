@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EntranceDoor
   - ExitDoor
+  - Diamond
   layers:
   - Default
   - TransparentFX
