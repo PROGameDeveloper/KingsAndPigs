@@ -239,8 +239,8 @@ MonoBehaviour:
   isWallJumping: 0
   wallJumpDuration: 0.2
   isKnocked: 0
-  knockedPower: {x: 3, y: 0}
-  knockedDuration: 0.5
+  knockedPower: {x: 2, y: 0}
+  knockedDuration: 0.3
   deathVFX: {fileID: 6517798126097456532, guid: e2d41efa2dca15f438e039ff09c039a7, type: 3}
 --- !u!95 &3314733111201064628
 Animator:
