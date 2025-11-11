@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private readonly int _idIsGrounded = Animator.StringToHash("isGrounded");
     private readonly int _idSpeed = Animator.StringToHash("speed");
     private readonly int _idIsWallDetected = Animator.StringToHash("isWallDetected");
-    private readonly int _idKnockback = Animator.StringToHash("knockback");
+    private readonly int _idKnockback = Animator.StringToHash("isKnockback");
     private readonly int _idIdle = Animator.StringToHash("Idle");
     private readonly int _idDoorIn = Animator.StringToHash("doorIn");
 
@@ -55,14 +55,17 @@ public class PlayerController : MonoBehaviour
     [Header("Knock settings")]
     [SerializeField] private bool isKnocked;
     //[SerializeField] private bool canBeKnocked;
-    [SerializeField] private Vector2 knockedPower;
+    [SerializeField] private Vector2 defaultKnockedPower;
     [SerializeField] private float knockedDuration;
+    private Vector2 _knockedPower;
+    public Vector2 KnockedPower { get => _knockedPower; set => _knockedPower = value; }
     
     [Header("Death VFX")]
     [SerializeField] private GameObject deathVFX;
-    
+
     private void Awake()
     {
+        _knockedPower = defaultKnockedPower;
         _gatherInput = GetComponent<GatherInput>();
         myTransform = GetComponent<Transform>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -208,16 +211,17 @@ public class PlayerController : MonoBehaviour
     public void Knockback()
     {
         StartCoroutine(KnockbackRoutine());
-        _rigidbody2D.linearVelocity = new Vector2(knockedPower.x * -_direction, knockedPower.y);
+        _rigidbody2D.linearVelocity = new Vector2(_knockedPower.x * -_direction, _knockedPower.y);
     }
 
     private IEnumerator KnockbackRoutine()
     {
         isKnocked = true;
-        _animator.SetBool("isKnockback",isKnocked);
+        _animator.SetBool(_idKnockback,isKnocked);
         yield return new WaitForSeconds(knockedDuration);
         isKnocked = false;
-        _animator.SetBool("isKnockback",isKnocked);
+        _animator.SetBool(_idKnockback,isKnocked);
+        _knockedPower = new Vector2(defaultKnockedPower.x, defaultKnockedPower.y);
     }
 
     public void Die()
