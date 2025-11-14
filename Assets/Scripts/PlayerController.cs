@@ -208,10 +208,15 @@ public class PlayerController : MonoBehaviour
         counterExtraJumps -= 1;
     }
 
-    public void Knockback()
+    public void Knockback(float sourceDamageXPosition)
     {
+        float _direction = 1;
+
+        if (transform.position.x < sourceDamageXPosition)
+            _direction = -1;
+        
         StartCoroutine(KnockbackRoutine());
-        _rigidbody2D.linearVelocity = new Vector2(_knockedPower.x * -_direction, _knockedPower.y);
+        _rigidbody2D.linearVelocity = new Vector2(_knockedPower.x * _direction, _knockedPower.y);
     }
 
     private IEnumerator KnockbackRoutine()

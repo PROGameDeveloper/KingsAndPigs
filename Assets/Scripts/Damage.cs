@@ -6,7 +6,7 @@ public class Damage : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerController>().Knockback();
+            collision.GetComponent<PlayerController>().Knockback(transform.position.x);
         }
     }
 }

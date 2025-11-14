@@ -9,6 +9,6 @@ public class ExtraDamage : MonoBehaviour
         if (!collision.CompareTag("Player")) return;
         var player = collision.GetComponent<PlayerController>();
         player.KnockedPower = extraKnockedPower;
-        player.Knockback();
+        player.Knockback(transform.position.x);
     }
 }

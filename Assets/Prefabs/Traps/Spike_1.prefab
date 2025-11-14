@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1996186423256321201}
   - component: {fileID: 6090715731327568412}
   - component: {fileID: 979911118718337534}
-  - component: {fileID: 2216497288547419236}
-  m_Layer: 9
+  - component: {fileID: 7058555101738695237}
+  m_Layer: 10
   m_Name: Spike_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.01, y: -0.17}
   m_Radius: 0.25
---- !u!114 &2216497288547419236
+--- !u!114 &7058555101738695237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,4 +139,4 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c162dd0ad8104c43ad09068c7407e8c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Damage
