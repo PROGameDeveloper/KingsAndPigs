@@ -105,7 +105,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!canMove) return;
+        if (!canMove)
+        {
+            HandleGround();
+            HandleWall();
+            SetAnimatorValues();
+            return;
+        }
         if(isKnocked) return;
         CheckCollision();
         Move();
@@ -233,6 +239,20 @@ public class PlayerController : MonoBehaviour
     {
         GameObject deathVFXPrefab = Instantiate(deathVFX, myTransform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+    
+    public void Push(Vector2 direction, float duration = 0)
+    {
+        StartCoroutine(PushCouroutine(direction, duration));
+    }
+
+    public IEnumerator PushCouroutine(Vector2 direction, float duration)
+    {
+        canMove = false;
+        _rigidbody2D.linearVelocity = Vector2.zero;
+        _rigidbody2D.AddForce(direction, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(duration);
+        canMove = true;
     }
 
     public void DoorIn()
