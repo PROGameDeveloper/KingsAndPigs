@@ -18,7 +18,7 @@ public class TrampolineController : MonoBehaviour
         if (player != null)
         {
             player.Push(transform.up * pushPower , duration);
-            _animator.SetTrigger("trampolineActive");
+            _animator.SetTrigger("active");
         }
     }
 }
