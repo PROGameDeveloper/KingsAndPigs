@@ -1,0 +1,22 @@
+Index: .idea/.idea.KingsAndPiggs/.idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n<<<<<<< HEAD\r\n    <mapping directory=\"\" vcs=\"Git\" />\r\n=======\r\n    <mapping directory=\"$PROJECT_DIR$\" vcs=\"Git\" />\r\n>>>>>>> master\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.KingsAndPiggs/.idea/vcs.xml b/.idea/.idea.KingsAndPiggs/.idea/vcs.xml
+--- a/.idea/.idea.KingsAndPiggs/.idea/vcs.xml	(revision 5bd4653dc0145065eb3effdb2aee6d74b96399f6)
++++ b/.idea/.idea.KingsAndPiggs/.idea/vcs.xml	(date 1765874453376)
+@@ -1,10 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+-<<<<<<< HEAD
+     <mapping directory="" vcs="Git" />
+-=======
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+->>>>>>> master
+   </component>
+ </project>
+\ No newline at end of file
