@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Level_Prototype.unity
+    path: Assets/Scenes/Level_Traps.unity
     guid: 95ac3afafb164d94cbaabebd41522c5c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4019b2c5a66393745b9491577cd2e3e3, type: 2}

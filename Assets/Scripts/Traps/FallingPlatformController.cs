@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class FallingPlatformController : MonoBehaviour
 {
+    private static readonly int Deactivate = Animator.StringToHash("deactivate");
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
     private BoxCollider2D[] _boxCollider2D; 
@@ -11,7 +12,7 @@ public class FallingPlatformController : MonoBehaviour
     [SerializeField] private float distance;
     private Vector3[] _wayPoints;
     private int _wayPointIndex;
-    private bool canMove = false;
+    private bool _canMove = false;
 
     [Header("Platform Fall Settings")] 
     [SerializeField] private bool canFall;
@@ -19,8 +20,8 @@ public class FallingPlatformController : MonoBehaviour
     [Space]
     [SerializeField] private float impactSpeed = 3;
     [SerializeField] private float impactDuration = 0.1f;
-    private float impactTimer;
-    private bool impactHappened;
+    private float _impactTimer;
+    private bool _impactHappened;
     
     [Header("Respawn Settings")]
     [SerializeField] private bool canRespawn = true;
@@ -47,7 +48,7 @@ public class FallingPlatformController : MonoBehaviour
         HandleMovement();
     }
 
-    private void ActivatePlatform() => canMove = true;
+    private void ActivatePlatform() => _canMove = true;
     
     private void SetupWaypoints()
     {
@@ -59,7 +60,7 @@ public class FallingPlatformController : MonoBehaviour
     
     private void HandleMovement()
     {
-        if (!canMove) return;
+        if (!_canMove) return;
         
         transform.position = Vector2.MoveTowards(transform.position, _wayPoints[_wayPointIndex], speed * Time.deltaTime);
 
@@ -73,10 +74,10 @@ public class FallingPlatformController : MonoBehaviour
     
     private void HandleImpact()
     {
-        if (impactTimer < 0)
+        if (_impactTimer < 0)
             return;
 
-        impactTimer -= Time.deltaTime;
+        _impactTimer -= Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, transform.position + (Vector3.down * 10),
             impactSpeed * Time.deltaTime);
     }
@@ -89,17 +90,17 @@ public class FallingPlatformController : MonoBehaviour
 
         if (!canFall) return;
         
-        if (impactHappened) return;
+        if (_impactHappened) return;
 
         Invoke(nameof(SwitchOffPlatform), fallDelay);
-        impactTimer = impactDuration;
-        impactHappened = true;
+        _impactTimer = impactDuration;
+        _impactHappened = true;
     }
     
     private void SwitchOffPlatform()
     {
-        _animator.SetTrigger("deactivate");
-        canMove = false;
+        _animator.SetTrigger(Deactivate);
+        _canMove = false;
         
         _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         _rigidbody2D.gravityScale = 3.5f;

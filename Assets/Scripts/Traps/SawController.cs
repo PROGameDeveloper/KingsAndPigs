@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SawController : MonoBehaviour
 {
+    private static readonly int SawActive = Animator.StringToHash("sawActive");
     [SerializeField] private float speed;
     [SerializeField] private Transform[] wayPoints;
     [SerializeField] private int indexWayPoint = 1;
@@ -29,6 +31,18 @@ public class SawController : MonoBehaviour
 
     private void UpdateWaypoints()
     {
+        List<SawWayPoints> wayPointsList = new List<SawWayPoints>(GetComponentsInChildren<SawWayPoints>());
+
+        if (wayPointsList.Count != wayPoints.Length)
+        {
+            wayPoints = new Transform[wayPointsList.Count];
+
+            for (int i = 0; i < wayPointsList.Count; i++)
+            {
+                wayPoints[i] = wayPointsList[i].transform;
+            }
+        }
+        
         _wayPointsPosition = new Vector3[wayPoints.Length];
 
         for (int i = 0; i < wayPoints.Length; i++)
@@ -39,7 +53,7 @@ public class SawController : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetBool("sawActive", canMove);
+        _animator.SetBool(SawActive, canMove);
         if (!canMove)  return;
         transform.position = Vector2.MoveTowards(transform.position, _wayPointsPosition[indexWayPoint], speed * Time.deltaTime);
         

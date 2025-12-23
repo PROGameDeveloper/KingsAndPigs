@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canMove;
     [SerializeField] private float moveDelay;
     private int _direction = 1;
+    
+    [Header("Enemy setting")]
+    [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private Transform enemyCheck;
+    [SerializeField] private float enemyCheckRadius;
+    [SerializeField] private float enemyBounceForce = 12f;
 
     [Header("Jump settings")]
     [SerializeField] private float jumpForce;
@@ -113,11 +119,35 @@ public class PlayerController : MonoBehaviour
             return;
         }
         if(isKnocked) return;
+        HandleEnemyDetection();
         CheckCollision();
         Move();
         Jump();
     }
- 
+
+    private void HandleEnemyDetection()
+    {
+        if (_rigidbody2D.linearVelocityY > -0.5) return;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(enemyCheck.position, enemyCheckRadius, whatIsEnemy);
+
+        foreach (var enemy in colliders)
+        {
+            Enemy newEnemy = enemy.GetComponent<Enemy>();
+            if (newEnemy == null) continue;
+
+            float stompMargin = 0.02f;
+            bool isAbove = enemyCheck.position.y > enemy.bounds.max.y - stompMargin;
+            if (!isAbove) continue;
+
+            newEnemy.Die();
+            _rigidbody2D.linearVelocity = new Vector2(_rigidbody2D.linearVelocityX, enemyBounceForce);
+            counterExtraJumps = extraJumps;
+            canDoubleJump = true;
+
+            break;
+        }
+    }
+
     private void CheckCollision()
     {
         HandleGround();
@@ -272,6 +302,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnDrawGizmos()
     {
+        Gizmos.DrawWireSphere(enemyCheck.position, enemyCheckRadius);
         Gizmos.DrawLine(myTransform.position,new Vector2(myTransform.position.x + (checkWallDistance * _direction),myTransform.position.y));
     }
 

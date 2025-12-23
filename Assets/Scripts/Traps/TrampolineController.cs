@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TrampolineController : MonoBehaviour
 {
+    private static readonly int Active = Animator.StringToHash("active");
     private Animator _animator;
     [SerializeField] private float pushPower;
     [SerializeField] private float duration = 0.5f;
@@ -18,7 +19,15 @@ public class TrampolineController : MonoBehaviour
         if (player != null)
         {
             player.Push(transform.up * pushPower , duration);
-            _animator.SetTrigger("active");
+            _animator.SetTrigger(Active);
+        }
+        
+        Enemy enemy = collision.GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            enemy.Push(transform.up * pushPower);
+            _animator.SetTrigger(Active);
         }
     }
 }

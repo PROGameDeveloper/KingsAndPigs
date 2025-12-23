@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class FireController : MonoBehaviour
 {
+    private static readonly int Active = Animator.StringToHash("active");
     [SerializeField] private float offDuration;
     [SerializeField] private FireButtonController fireButton;
 
-    private Animator animator;
-    private CapsuleCollider2D capsuleCollider2D;
-    private bool isActive;
+    private Animator _animator;
+    private CapsuleCollider2D _capsuleCollider2D;
+    private bool _isActive;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        _animator = GetComponent<Animator>();
+        _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
     
     private void Start()
@@ -26,7 +27,7 @@ public class FireController : MonoBehaviour
 
     public void SwitchOffFire()
     {
-        if (isActive == false) return;
+        if (_isActive == false) return;
         StartCoroutine(FireCoroutine());
     }
 
@@ -40,9 +41,9 @@ public class FireController : MonoBehaviour
     
     private void SetFire(bool active)
     {
-        animator.SetBool("active", active);
-        capsuleCollider2D.enabled = active;
-        isActive = active;
+        _animator.SetBool(Active, active);
+        _capsuleCollider2D.enabled = active;
+        _isActive = active;
     }
 
 

@@ -67,7 +67,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -81,7 +81,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,7 +105,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -146,12 +146,12 @@ TextureImporter:
       name: Idle (34x28)_0
       rect:
         serializedVersion: 2
-        x: 10
+        x: 0
         y: 0
-        width: 20
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 28
+      alignment: 9
+      pivot: {x: 0.55, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: Idle (34x28)_1
       rect:
         serializedVersion: 2
-        x: 44
+        x: 34
         y: 0
-        width: 20
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 28
+      alignment: 9
+      pivot: {x: 0.55, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -190,12 +190,12 @@ TextureImporter:
       name: Idle (34x28)_2
       rect:
         serializedVersion: 2
-        x: 78
+        x: 68
         y: 0
-        width: 20
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 28
+      alignment: 9
+      pivot: {x: 0.55, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -212,12 +212,12 @@ TextureImporter:
       name: Idle (34x28)_3
       rect:
         serializedVersion: 2
-        x: 112
+        x: 102
         y: 0
-        width: 20
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 28
+      alignment: 9
+      pivot: {x: 0.55, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -234,12 +234,12 @@ TextureImporter:
       name: Idle (34x28)_4
       rect:
         serializedVersion: 2
-        x: 146
+        x: 136
         y: 0
-        width: 20
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 28
+      alignment: 9
+      pivot: {x: 0.55, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -256,12 +256,12 @@ TextureImporter:
       name: Idle (34x28)_5
       rect:
         serializedVersion: 2
-        x: 180
+        x: 170
         y: 0
-        width: 20
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 28
+      alignment: 9
+      pivot: {x: 0.55, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -278,12 +278,12 @@ TextureImporter:
       name: Idle (34x28)_6
       rect:
         serializedVersion: 2
-        x: 214
+        x: 204
         y: 0
-        width: 20
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 28
+      alignment: 9
+      pivot: {x: 0.55, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -300,12 +300,12 @@ TextureImporter:
       name: Idle (34x28)_7
       rect:
         serializedVersion: 2
-        x: 248
+        x: 238
         y: 0
-        width: 20
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 28
+      alignment: 9
+      pivot: {x: 0.55, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -322,12 +322,12 @@ TextureImporter:
       name: Idle (34x28)_8
       rect:
         serializedVersion: 2
-        x: 281
+        x: 272
         y: 0
-        width: 21
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 28
+      alignment: 9
+      pivot: {x: 0.55, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -344,12 +344,12 @@ TextureImporter:
       name: Idle (34x28)_9
       rect:
         serializedVersion: 2
-        x: 315
+        x: 306
         y: 0
-        width: 21
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 28
+      alignment: 9
+      pivot: {x: 0.55, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -366,12 +366,12 @@ TextureImporter:
       name: Idle (34x28)_10
       rect:
         serializedVersion: 2
-        x: 350
+        x: 340
         y: 0
-        width: 20
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 34
+        height: 28
+      alignment: 9
+      pivot: {x: 0.55, y: 0.41}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -388,7 +388,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1a6cf8d0b12886d4c9e617a5fb951913
     internalID: 0
     vertices: []
     indices: 
@@ -396,7 +396,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":11.0,"y":1.0},"gridSpriteSize":{"x":34.0,"y":28.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.550000011920929,"y":0.4099999964237213},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Idle (34x28)_0: 4571226829092849726
       Idle (34x28)_1: -8949856686944730191
